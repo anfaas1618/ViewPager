@@ -25,11 +25,9 @@ public class MainActivity extends AppCompatActivity {
         carList.add(new car(R.drawable.image_one,"car1"));
         carList.add(new car(R.drawable.image_two,"car2"));
         carList.add(new car(R.drawable.image_three,"car3"));
-       ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(MainActivity.this,carList);
+         ViewPagerAdapter adapter=new ViewPagerAdapter(getSupportFragmentManager());
        ViewPager page=findViewById(R.id.viewPager);
 
-
-
-        page.setAdapter(viewPagerAdapter);
+        page.setAdapter(adapter);
     }
 }

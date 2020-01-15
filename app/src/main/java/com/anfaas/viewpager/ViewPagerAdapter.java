@@ -8,68 +8,45 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
-public class ViewPagerAdapter extends PagerAdapter {
+public class ViewPagerAdapter extends FragmentPagerAdapter
+{
 
-    Context context;
-    LayoutInflater inflater;
-    private String[] tabTitles = new String[]{"car1", "car2", "car3"};
-
-    List<car> carList;
-    public  ViewPagerAdapter(Context context,List<car> cars)
+    public ViewPagerAdapter(@NonNull FragmentManager fm)
     {
-        this.carList=cars;
-        this.context=context;
-        this.inflater=(LayoutInflater) this.context.getSystemService(this.context.LAYOUT_INFLATER_SERVICE);
-
+        super(fm);
     }
-
-    @Override
-    public int getCount() {
-
-        return  carList.size();
-    }
-
-    @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-
-        return  view ==(View)object;
-    }
-
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-
-        if (position == 1) {
-            View myView = inflater.inflate(R.layout.item_view_pager, container, false);
-            TextView name = myView.findViewById(R.id.carName);
-            ImageView imageView = myView.findViewById(R.id.carImage);
-            imageView.setImageResource(this.carList.get(position).getImageId());
-            name.setText(this.carList.get(position).getcar_name());
-            container.addView(myView);
-            return myView;
-        } else {
-            View myView = inflater.inflate(R.layout.item_two, container, false);
-            TextView name = myView.findViewById(R.id.carName);
-            ImageView imageView = myView.findViewById(R.id.carImage);
-            imageView.setImageResource(this.carList.get(position).getImageId());
-            name.setText(this.carList.get(position).getcar_name());
-            container.addView(myView);
-            return myView;
-        }
+    public Fragment getItem(int position) {
+        return  new BlankFragment();
     }
-
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View)object);
+    public int getCount() {
+        return 3;
     }
+    @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        return tabTitles[position];
+      switch (position)
+      {
+          case 0:
+                   return "anfaas";
+          case 1:
+                   return "lala";
+          case 2:
+                   return "lmao";
+
+      }
+       return "kjh";
     }
 }
